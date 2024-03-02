@@ -1,12 +1,13 @@
 import { MdArrowBack } from 'react-icons/md'
 import BMIForm from './bmi-form'
+import Link from 'next/link'
 
 export default function BMICalculator() {
   return (
     <main className='min-h-screen max-w-screen-lg mx-auto px-6 py-12'>
-      <a className='inline-flex items-center font-semibold text-primary' href='/'>
+      <Link className='inline-flex items-center font-semibold text-primary' href='/'>
         <MdArrowBack className='mr-1 ' /> Back to HomePage
-      </a>
+      </Link>
       <h1 className='font-bold text-4xl sm:text-5xl tracking-tight'>BMI Calculator</h1>
 
       <div className='mt-12'>

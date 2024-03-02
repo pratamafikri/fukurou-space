@@ -1,11 +1,12 @@
+import Link from 'next/link'
 import { MdArrowBack } from 'react-icons/md'
 
 export default function NumerologyCalculator() {
   return (
     <main className='min-h-screen max-w-screen-xl mx-auto px-6 py-12'>
-      <a className='inline-flex items-center font-semibold text-primary' href='/'>
+      <Link className='inline-flex items-center font-semibold text-primary' href='/'>
         <MdArrowBack className='mr-1 ' /> Back to HomePage
-      </a>
+      </Link>
       <h1 className='font-bold text-5xl tracking-tight'>Numerology Life Path Calculator</h1>
 
       <div className='mt-12'>
