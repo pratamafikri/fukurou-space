@@ -122,13 +122,11 @@ export default function TransactionForm() {
       <div className='rounded border border-primary border-t-8 mt-8 px-6 py-6 shadow-md shadow-primary mx-auto md:w-3/4 space-y-4'>
         <h4 className='font-bold text-lg mb-4'>Result</h4>
         <hr className='mb-4 border-primary/50' />
-        <table className='min-w-full border-collapse border border-gray-300'>
+        <table className='min-w-full border-collapse border text-xs md:text-base border-gray-300'>
           <thead>
             <tr>
               <th className='border border-gray-300 p-2'>Name</th>
               <th className='border border-gray-300 p-2'>Product</th>
-              <th className='border border-gray-300 p-2'>QTY</th>
-              <th className='border border-gray-300 p-2'>Price</th>
               <th className='border border-gray-300 p-2'>Total</th>
               <th className='border border-gray-300 p-2'>After Split</th>
             </tr>
@@ -141,8 +139,6 @@ export default function TransactionForm() {
                 <tr key={index}>
                   <td className='border border-gray-300 p-2 text-center'>{row.name}</td>
                   <td className='border border-gray-300 p-2'>{row.product}</td>
-                  <td className='border border-gray-300 p-2 text-center'>{row.quantity}</td>
-                  <td className='border border-gray-300 p-2 text-end'>{numberWithCommas(row.price)}</td>
                   <td className='border border-gray-300 p-2 text-end'>{numberWithCommas(total)}</td>
                   <td className='border border-gray-300 p-2 text-end'>{numberWithCommas(afterSplit)}</td>
                 </tr>
