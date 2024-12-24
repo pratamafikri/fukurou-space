@@ -11,9 +11,13 @@ export default function Home() {
       name: 'BMI Calculator',
       route: '/bmi-calculator',
     },
+    // {
+    //   name: 'Numerology Life Path Calculator',
+    //   route: '/numerology-calculator',
+    // },
     {
-      name: 'Numerology Life Path Calculator',
-      route: '/numerology-calculator',
+      name: 'Split Bill Calculator',
+      route: '/split-bill-calculator'
     },
   ]
 
@@ -26,7 +30,7 @@ export default function Home() {
           <h1 className='font-bold text-3xl md:text-4xl lg:text-5xl text-center tracking-tight leading-snug flex justify-center items-center gap-2 mb-2'>
             Fukurou Space <GiBlackHoleBolas />
           </h1>
-          <p className='tracking-normal text-center'>a simple website to help you</p>
+          <p className='tracking-normal text-center'>solving daily problem with algorithm</p>
         </div>
         <div className='grid auto-rows-fr grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4'>
           {sortedApplications.map((application, index) => {
