@@ -9,8 +9,11 @@ interface InputRowProps {
   onDelete: (index: number) => void
 }
 
-const numberWithCommas = (amount: number) => {
-  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+function numberWithCommas(amount: number) {
+  if (amount % 1 === 0) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 const InputRow: React.FC<InputRowProps> = ({ index, data, onChange, onDelete }) => {
@@ -48,6 +51,7 @@ const InputRow: React.FC<InputRowProps> = ({ index, data, onChange, onDelete }) 
           onChange={(e) => handleInputChange(e, 'quantity')} // Use the same handler for quantity
           placeholder='Enter quantity'
           className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
+          inputMode='numeric'
         />
       </div>
       <div className='flex flex-col w-full order-5'>
@@ -58,6 +62,7 @@ const InputRow: React.FC<InputRowProps> = ({ index, data, onChange, onDelete }) 
           onChange={(e) => handleInputChange(e, 'price')} // Use the same handler for price
           placeholder='Enter price'
           className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
+          inputMode='numeric'
         />
       </div>
     </div>

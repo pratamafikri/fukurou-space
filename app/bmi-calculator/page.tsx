@@ -45,9 +45,9 @@ export default function BMICalculator() {
           that have to look after getting the BMI result:
         </p>
         <ul className='list-disc pl-4'>
+          <li>If your BMI is less than 17, then you might be underweight.</li>
           <li>Normal BMI is between 17-25</li>
           <li>If your BMI is more than 25, then you might be overweight.</li>
-          <li>If your BMI is less than 17, then you might be underweight.</li>
           <li>
             If your BMI value is exceeds 27, it is better to get treatment immediately to prevent a decease from
             occuring

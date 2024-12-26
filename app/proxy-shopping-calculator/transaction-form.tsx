@@ -4,8 +4,11 @@ import { useState } from 'react'
 import InputRow from './input-row'
 import { HiOutlinePlus } from 'react-icons/hi'
 
-const numberWithCommas = (amount: number) => {
-  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+function numberWithCommas(amount: number) {
+  if (amount % 1 === 0) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 export default function TransactionForm() {
@@ -111,6 +114,7 @@ export default function TransactionForm() {
               onChange={handleNumberInputChange(setServiceCharge)}
               placeholder='Enter service charge'
               className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
+              inputMode='numeric'
             />
           </div>
           <div className='flex flex-col w-full'>
@@ -121,6 +125,7 @@ export default function TransactionForm() {
               onChange={handleNumberInputChange(setDeliveryCost)}
               placeholder='Enter delivery cost'
               className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
+              inputMode='numeric'
             />
           </div>
           <div className='flex flex-col w-full'>
@@ -131,6 +136,7 @@ export default function TransactionForm() {
               onChange={handleNumberInputChange(setDiscount)}
               placeholder='Enter discount'
               className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
+              inputMode='numeric'
             />
           </div>
         </div>

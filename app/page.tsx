@@ -1,6 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { GiBlackHoleBolas } from 'react-icons/gi'
+import { TbPercentage } from 'react-icons/tb'
+import { GiWeightScale } from 'react-icons/gi'
+import { FaMoneyBills } from 'react-icons/fa6'
+import { FiShoppingBag } from 'react-icons/fi'
 
 export const metadata: Metadata = {
   title: 'Home | Fukurou Space',
@@ -12,22 +16,22 @@ export default function Home() {
     {
       name: 'Budget Planner',
       route: '/budget-planner',
+      icon: <TbPercentage className='h-12 w-12 group-hover:text-neutral-100'/>,
     },
     {
       name: 'BMI Calculator',
       route: '/bmi-calculator',
+      icon: <GiWeightScale className='h-12 w-12 group-hover:text-neutral-100'/>,
     },
-    // {
-    //   name: 'Numerology Life Path Calculator',
-    //   route: '/numerology-calculator',
-    // },
     {
       name: 'Split Bill Calculator',
       route: '/split-bill-calculator',
+      icon: <FaMoneyBills className='h-12 w-12 group-hover:text-neutral-100'/>,
     },
     {
       name: 'Proxy Shopping Calculator',
       route: '/proxy-shopping-calculator',
+      icon: <FiShoppingBag className='h-12 w-12 group-hover:text-neutral-100'/>,
     },
   ]
 
@@ -38,20 +42,19 @@ export default function Home() {
       <div>
         <div className='mb-16'>
           <h1 className='font-bold text-3xl md:text-4xl lg:text-5xl text-center tracking-tight leading-snug flex justify-center items-center gap-2 mb-2'>
-            Fukurou Space <GiBlackHoleBolas />
+            Fukurou <GiBlackHoleBolas /> Space
           </h1>
           <p className='tracking-normal text-center'>solving daily problem with algorithm</p>
         </div>
-        <div className='grid auto-rows-fr grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4'>
+        <div className='grid auto-rows-fr grid-cols-2 lg:grid-cols-3 gap-4'>
           {sortedApplications.map((application, index) => {
             return (
               <Link
                 key={index}
                 href={application.route}
-                className='border rounded-lg p-8 group hover:bg-neutral-100 hover:cursor-pointer lg:hover:scale-105 transition duration-300 flex items-center justify-center'>
-                <h1 className='text-center font-semibold text-2xl uppercase group-hover:text-jetblack'>
-                  {application.name}
-                </h1>
+                className='border border-primary rounded-lg group shadow-md shadow-primary hover:bg-primary hover:cursor-pointer lg:hover:scale-105 transition duration-300 flex flex-col md:flex-row items-center space-x-0 space-y-4 md:space-y-0 md:space-x-4 p-4'>
+                {application.icon}
+                <h1 className='text-center font-semibold uppercase group-hover:text-neutral-100'>{application.name}</h1>
               </Link>
             )
           })}
@@ -59,7 +62,7 @@ export default function Home() {
       </div>
 
       <footer>
-        <p className='text-center'>Hi. I built all these tools when I was in my free time. I hope it can help you.</p>
+        <p className='text-center'>Hi. I built all these tools when I was in my free time. Hope it can help you.</p>
         <p className='text-center'>
           Sincerely yours,{' '}
           <a
