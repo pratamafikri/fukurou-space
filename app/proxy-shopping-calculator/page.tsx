@@ -4,8 +4,8 @@ import TransactionForm from './transaction-form'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Split Bill Calculator | Fukurou Space',
-  description: 'Calculate your split bill cost.',
+  title: 'Proxy Shopping Calculator | Fukurou Space',
+  description: 'Calculate your proxy shopping cost.',
 }
 
 export default function NumerologyCalculator() {
@@ -14,13 +14,12 @@ export default function NumerologyCalculator() {
       <Link className='inline-flex items-center font-semibold text-primary' href='/'>
         <MdArrowBack className='mr-1 ' /> Back to HomePage
       </Link>
-      <h1 className='font-bold text-5xl tracking-tight'>Split Bill Calculator</h1>
+      <h1 className='font-bold text-5xl tracking-tight'>Proxy Shopping Calculator</h1>
 
       <div className='mt-12'>
         <p className='text-justify'>
-          Tired of awkward moments and endless debates when splitting bills with friends or family? Our Split Bill
-          Calculator is here to save the day! Simply enter the total bill amount, add the number of people sharing the
-          cost, and watch as our app instantly calculates each persons share. No more mental math or heated arguments!
+          Tired of guessing how much your proxy shopping will cost? Our app simplifies the process with a powerful cost
+          calculator. Quickly estimate shipping costs, fees, and potential discounts.
         </p>
 
         <TransactionForm />

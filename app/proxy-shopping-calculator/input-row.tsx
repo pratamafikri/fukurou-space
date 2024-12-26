@@ -4,7 +4,7 @@ import { RiDeleteBin6Fill } from 'react-icons/ri'
 
 interface InputRowProps {
   index: number
-  data: { product: string; quantity: number; price: number } // Keep price and quantity as numbers
+  data: { name: string; product: string; quantity: number; price: number } // Keep price and quantity as numbers
   onChange: (index: number, field: string, value: string | number) => void
   onDelete: (index: number) => void
 }
@@ -30,6 +30,16 @@ const InputRow: React.FC<InputRowProps> = ({ index, data, onChange, onDelete }) 
         className='bg-red-500 text-white p-3 rounded flex items-center justify-center gap-1 w-full mt-4 md:mt-0 md:w-auto order-6 md:order-1'>
         <RiDeleteBin6Fill />
       </button>
+      <div className='flex flex-col w-full order-2'>
+        <label className='mb-1 text-sm font-medium'>Name (Optional)</label>
+        <input
+          type='text'
+          value={data.name}
+          onChange={(e) => onChange(index, 'name', e.target.value)}
+          placeholder='Enter name'
+          className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
+        />
+      </div>
       <div className='flex flex-col w-full order-3'>
         <label className='mb-1 text-sm font-medium'>Product</label>
         <input

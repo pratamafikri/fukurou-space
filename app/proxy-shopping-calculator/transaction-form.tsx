@@ -5,19 +5,17 @@ import InputRow from './input-row'
 import { HiOutlinePlus } from 'react-icons/hi'
 
 const numberWithCommas = (amount: number) => {
-  const [integerPart] = amount.toString().split('.')
-  return integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
 export default function TransactionForm() {
-  const [rows, setRows] = useState([{ product: '', quantity: 1, price: 0 }])
+  const [rows, setRows] = useState([{ name: '', product: '', quantity: 1, price: 0 }])
   const [serviceCharge, setServiceCharge] = useState('')
   const [deliveryCost, setDeliveryCost] = useState('')
   const [discount, setDiscount] = useState('')
-  const [personCount, setPersonCount] = useState('2')
 
   const handleAddRow = () => {
-    setRows([...rows, { product: '', quantity: 1, price: 0 }])
+    setRows([...rows, { name: '', product: '', quantity: 1, price: 0 }])
   }
 
   const handleChange = (index: number, field: string, value: string | number) => {
@@ -48,7 +46,7 @@ export default function TransactionForm() {
     return rows.reduce((acc, row) => acc + calculateSubtotal(row), 0)
   }
 
-  // Calculate totals
+  // Calculate total fees
   const calculateTotalFee = () => {
     const totalServiceCharge = Number(serviceCharge.replace(/,/g, '')) || 0
     const totalDeliveryCost = Number(deliveryCost.replace(/,/g, '')) || 0
@@ -70,8 +68,17 @@ export default function TransactionForm() {
   }
 
   // Calculate After Split for each row
-  const calculateAfterSplit = () => {
-    return calculateGrandTotal() / Number(personCount)
+  const calculateAfterSplit = (rowTotal: number) => {
+    const transactionCount = rows.length
+
+    // Calculate the After Split value
+    const afterSplit =
+      rowTotal +
+      totalFee.totalServiceCharge / transactionCount +
+      totalFee.totalDeliveryCost / transactionCount -
+      totalFee.totalDiscount / transactionCount
+
+    return afterSplit
   }
 
   return (
@@ -136,22 +143,30 @@ export default function TransactionForm() {
       <div className='rounded border border-primary border-t-8 mt-8 px-6 py-6 shadow-md shadow-primary mx-auto md:w-3/4 space-y-4'>
         <h4 className='font-bold text-lg mb-4'>Result</h4>
         <hr className='mb-4 border-primary/50' />
-        <div className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4'>
-          <div className='flex flex-col w-full'>
-            <p>Number of persons</p>
-            <input
-              type='text'
-              value={numberWithCommas(Number(personCount))}
-              onChange={handleNumberInputChange(setPersonCount)}
-              placeholder='Enter number of persons'
-              className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
-            />
-          </div>
-          <div className='flex flex-col w-full'>
-            <p>Each person has to pay:</p>
-            <p className='font-bold text-6xl'>{numberWithCommas(calculateAfterSplit())}</p>
-          </div>
-        </div>
+        <table className='min-w-full border-collapse border text-xs md:text-base border-gray-300'>
+          <thead>
+            <tr>
+              <th className='border border-gray-300 p-2'>Name</th>
+              <th className='border border-gray-300 p-2'>Product</th>
+              <th className='border border-gray-300 p-2'>Price</th>
+              <th className='border border-gray-300 p-2'>Final Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => {
+              const total = row.quantity * row.price
+              const afterSplit = calculateAfterSplit(total)
+              return (
+                <tr key={index}>
+                  <td className='border border-gray-300 p-2 text-center'>{row.name}</td>
+                  <td className='border border-gray-300 p-2'>{row.product}</td>
+                  <td className='border border-gray-300 p-2 text-end'>{numberWithCommas(total)}</td>
+                  <td className='border border-gray-300 p-2 text-end'>{numberWithCommas(afterSplit)}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   )

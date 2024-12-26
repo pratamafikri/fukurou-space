@@ -1,5 +1,11 @@
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { GiBlackHoleBolas } from 'react-icons/gi'
+
+export const metadata: Metadata = {
+  title: 'Home | Fukurou Space',
+  description: 'Fukurou Space. solving daily problem with algorithms',
+}
 
 export default function Home() {
   const applications = [
@@ -17,7 +23,11 @@ export default function Home() {
     // },
     {
       name: 'Split Bill Calculator',
-      route: '/split-bill-calculator'
+      route: '/split-bill-calculator',
+    },
+    {
+      name: 'Proxy Shopping Calculator',
+      route: '/proxy-shopping-calculator',
     },
   ]
 

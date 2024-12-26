@@ -1,6 +1,12 @@
 import { MdArrowBack } from 'react-icons/md'
 import BMIForm from './bmi-form'
 import Link from 'next/link'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'BMI Calculator | Fukurou Space',
+  description: 'Calculate your BMI.',
+}
 
 export default function BMICalculator() {
   return (
