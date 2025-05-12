@@ -96,6 +96,7 @@ export default function BMIForm() {
           </div>
         </div>
         <div className='flex flex-col gap-2'>
+          <label htmlFor="">Body Height (cm)</label>
           <input
             type='number'
             placeholder='Enter your body height (cm)'
@@ -105,6 +106,7 @@ export default function BMIForm() {
             value={height}
             required
           />
+          <label htmlFor="">Body Weight (kg)</label>
           <input
             type='number'
             placeholder='Enter your body weight (kg)'

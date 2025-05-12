@@ -1,22 +1,22 @@
 import { Metadata } from 'next'
-import { MdArrowBack } from 'react-icons/md'
 import BudgetForm from './budget-form'
-import Link from 'next/link'
+import SimpleHeader from '../components/simple_header'
+
+let pageTitle = '50/30/20 Budget Planner'
 
 export const metadata: Metadata = {
-  title: 'Budget Planner | Fukurou space',
-  description: 'Budget Planner',
+  title: pageTitle + ' | Fukurou space',
+  description: pageTitle,
 }
 
 export default function BudgetPlanner() {
   return (
     <main className='min-h-screen max-w-screen-lg mx-auto px-6 py-12'>
-      <Link className='inline-flex items-center font-semibold text-primary' href='/'>
-        <MdArrowBack className='mr-1 ' /> Back to HomePage
-      </Link>
-      <h1 className='font-bold text-4xl sm:text-5xl tracking-tight'>Budget Planner</h1>
+      <SimpleHeader title={pageTitle} />
 
       <div className='mt-12'>
+        <BudgetForm />
+
         <p className='text-justify mb-4'>
           Making a budget can assist you in making certain choices and appreciating the peace of intellect. A
           point-by-point budget, even though it can be complex to oversee. The 50-30-20 run the show parts costs into
@@ -28,8 +28,6 @@ export default function BudgetPlanner() {
           To begin, insert your monthly take-home income then it will be automatically calculated into suggested
           spending in three categories: 50% of net pay for needs, 30% for wants and 20% for savings and debt repayment.
         </p>
-
-        <BudgetForm />
 
         <h3 className='font-bold text-2xl mt-4 mb-2'>What is 50/30/20 method?</h3>
         <p className='text-justify mb-4'>

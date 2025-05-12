@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { MdArrowBack } from 'react-icons/md'
-import TransactionForm from './transaction-form'
 import { Metadata } from 'next'
+import Pomodoro from './pomodoro'
 
 export const metadata: Metadata = {
   title: 'Split Bill Calculator | Fukurou Space',
@@ -14,16 +14,17 @@ export default function NumerologyCalculator() {
       <Link className='inline-flex items-center font-semibold text-primary' href='/'>
         <MdArrowBack className='mr-1 ' /> Back to HomePage
       </Link>
-      <h1 className='font-bold text-5xl tracking-tight'>Split Bill Calculator</h1>
+      <h1 className='font-bold text-5xl tracking-tight'>Pomodoro Timer</h1>
 
       <div className='mt-12'>
-        <p className='text-justify'>
-          Tired of awkward moments and endless debates when splitting bills with friends or family? Our Split Bill
-          Calculator is here to save the day! Simply enter the total bill amount, add the number of people sharing the
-          cost, and watch as our app instantly calculates each persons share. No more mental math or heated arguments!
-        </p>
+        <Pomodoro />
 
-        <TransactionForm />
+        <p className='text-justify'>
+          The Pomodoro Technique is created by Francesco Cirillo for a more productive way to work and study. The
+          technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by
+          short breaks. Each interval is known as a pomodoro, from the Italian word for &apos;tomato&apos;, after the
+          tomato-shaped kitchen timer that Cirillo used as a university student.
+        </p>
       </div>
     </main>
   )

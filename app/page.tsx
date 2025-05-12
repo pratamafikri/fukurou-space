@@ -1,10 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { GiBlackHoleBolas } from 'react-icons/gi'
-import { TbPercentage } from 'react-icons/tb'
-import { GiWeightScale } from 'react-icons/gi'
-import { FaMoneyBills } from 'react-icons/fa6'
-import { FiShoppingBag } from 'react-icons/fi'
+import {applications} from './menu'
 
 export const metadata: Metadata = {
   title: 'Home | Fukurou Space',
@@ -12,28 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  const applications = [
-    {
-      name: 'Budget Planner',
-      route: '/budget-planner',
-      icon: <TbPercentage className='h-12 w-12 group-hover:text-neutral-100'/>,
-    },
-    {
-      name: 'BMI Calculator',
-      route: '/bmi-calculator',
-      icon: <GiWeightScale className='h-12 w-12 group-hover:text-neutral-100'/>,
-    },
-    {
-      name: 'Split Bill Calculator',
-      route: '/split-bill-calculator',
-      icon: <FaMoneyBills className='h-12 w-12 group-hover:text-neutral-100'/>,
-    },
-    {
-      name: 'Proxy Shopping Calculator',
-      route: '/proxy-shopping-calculator',
-      icon: <FiShoppingBag className='h-12 w-12 group-hover:text-neutral-100'/>,
-    },
-  ]
 
   const sortedApplications = applications.reverse()
 
@@ -71,8 +46,7 @@ export default function Home() {
             target='_blank'
             className='font-semibold text-teal-400'>
             Fikri
-          </a>{' '}
-          [2024]
+          </a>
         </p>
       </footer>
     </main>

@@ -1,29 +1,27 @@
-import { MdArrowBack } from 'react-icons/md'
 import BMIForm from './bmi-form'
-import Link from 'next/link'
 import { Metadata } from 'next'
+import SimpleHeader from '../components/simple_header'
+
+let pageTitle = 'BMI Calculator'
 
 export const metadata: Metadata = {
-  title: 'BMI Calculator | Fukurou Space',
+  title: pageTitle + ' | Fukurou Space',
   description: 'Calculate your BMI.',
 }
 
 export default function BMICalculator() {
   return (
     <main className='min-h-screen max-w-screen-lg mx-auto px-6 py-12'>
-      <Link className='inline-flex items-center font-semibold text-primary' href='/'>
-        <MdArrowBack className='mr-1 ' /> Back to HomePage
-      </Link>
-      <h1 className='font-bold text-4xl sm:text-5xl tracking-tight'>BMI Calculator</h1>
+      <SimpleHeader title={pageTitle} />
 
       <div className='mt-12'>
+        <BMIForm />
+
         <p className='text-justify mb-4'>
           An ideal body weight is everyone&apos;s dream nowadays. A healthy body consists not only of a good body
           proportion but also includes an ideal body weight. How about yours? Let&apos;s check it out using this BMI
           Calculator.
         </p>
-
-        <BMIForm />
 
         <h3 className='font-bold text-lg mb-2'>What is BMI?</h3>
         <p className='text-justify mb-4'>
