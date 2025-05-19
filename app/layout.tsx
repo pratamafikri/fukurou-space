@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Fukurou Space',
-  description: 'Solving daily problem with algorithm',
+  description: 'code for nothing',
   robots: 'noindex, nofollow'
 }
 

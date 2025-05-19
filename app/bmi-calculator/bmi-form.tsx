@@ -96,8 +96,9 @@ export default function BMIForm() {
           </div>
         </div>
         <div className='flex flex-col gap-2'>
-          <label htmlFor="">Body Height (cm)</label>
+          <label htmlFor=''>Body Height (cm)</label>
           <input
+            autoFocus
             type='number'
             placeholder='Enter your body height (cm)'
             className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
@@ -106,7 +107,7 @@ export default function BMIForm() {
             value={height}
             required
           />
-          <label htmlFor="">Body Weight (kg)</label>
+          <label htmlFor=''>Body Weight (kg)</label>
           <input
             type='number'
             placeholder='Enter your body weight (kg)'

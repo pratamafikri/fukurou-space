@@ -19,7 +19,7 @@ export default function Home() {
           <h1 className='font-bold text-3xl md:text-4xl lg:text-5xl text-center tracking-tight leading-snug flex justify-center items-center gap-2 mb-2'>
             Fukurou <GiBlackHoleBolas /> Space
           </h1>
-          <p className='tracking-normal text-center'>solving daily problem with algorithm</p>
+          <p className='tracking-normal text-center'>code for nothing</p>
         </div>
         <div className='grid auto-rows-fr grid-cols-2 lg:grid-cols-3 gap-4'>
           {sortedApplications.map((application, index) => {
@@ -37,7 +37,7 @@ export default function Home() {
       </div>
 
       <footer>
-        <p className='text-center'>Hi. I built all these tools when I was in my free time. Hope it can help you.</p>
+        <p className='text-center'>Hi. I built all of these when I was in my free time. Hope it can help and entertain you.</p>
         <p className='text-center'>
           Sincerely yours,{' '}
           <a

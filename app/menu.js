@@ -18,9 +18,9 @@ export const applications = [
     route: '/life-path-calculator',
     icon: <IoCalendarNumber className='h-12 w-12 group-hover:text-neutral-100' />,
   },
-  {
+  /* {
     name: 'Pomodoro Timer',
     route: '/pomodoro-timer',
     icon: <GiTomato className='h-12 w-12 group-hover:text-neutral-100' />,
-  },
+  }, */
 ]
