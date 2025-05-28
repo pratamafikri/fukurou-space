@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { GiBlackHoleBolas } from 'react-icons/gi'
-import {applications} from './menu'
+import { GiOwl } from 'react-icons/gi'
+import { applications } from './menu'
 
 export const metadata: Metadata = {
   title: 'Home | Fukurou Space',
@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-
   const sortedApplications = applications.reverse()
 
   return (
@@ -17,9 +16,9 @@ export default function Home() {
       <div>
         <div className='mb-16'>
           <h1 className='font-bold text-3xl md:text-4xl lg:text-5xl text-center tracking-tight leading-snug flex justify-center items-center gap-2 mb-2'>
-            Fukurou <GiBlackHoleBolas /> Space
+            <GiOwl /> Fukurou Space
           </h1>
-          <p className='tracking-normal text-center'>code for nothing</p>
+          <p className='tracking-normal text-center'>when boredom meets code</p>
         </div>
         <div className='grid auto-rows-fr grid-cols-2 lg:grid-cols-3 gap-4'>
           {sortedApplications.map((application, index) => {
@@ -37,7 +36,9 @@ export default function Home() {
       </div>
 
       <footer>
-        <p className='text-center'>Hi. I built all of these when I was in my free time. Hope it can help and entertain you.</p>
+        <p className='text-center'>
+          Hi. I built all of these when I was in my free time. Hope it can help and entertain you.
+        </p>
         <p className='text-center'>
           Sincerely yours,{' '}
           <a

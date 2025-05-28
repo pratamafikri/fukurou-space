@@ -1,20 +1,18 @@
-import Link from 'next/link'
-import { MdArrowBack } from 'react-icons/md'
 import { Metadata } from 'next'
 import Pomodoro from './pomodoro'
+import SimpleHeader from '../components/simple_header'
+
+let pageTitle = 'Pomodoro Timer'
 
 export const metadata: Metadata = {
-  title: 'Pomodoro Timer | Fukurou Space',
+  title: pageTitle + ' | Fukurou Space',
   description: 'Break down your work intervals to boost productivity.',
 }
 
 export default function NumerologyCalculator() {
   return (
     <main className='max-w-screen-xl mx-auto px-6 py-12'>
-      <Link className='inline-flex items-center font-semibold text-primary' href='/'>
-        <MdArrowBack className='mr-1 ' /> Back to HomePage
-      </Link>
-      <h1 className='font-bold text-5xl tracking-tight'>Pomodoro Timer</h1>
+      <SimpleHeader title={pageTitle} />
 
       <div className='mt-12'>
         <Pomodoro />
