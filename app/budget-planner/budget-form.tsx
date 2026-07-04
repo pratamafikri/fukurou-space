@@ -1,29 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { MdAutoGraph } from 'react-icons/md'
 
 export default function BudgetForm() {
   const [earning, setEarning] = useState('')
-  const [inputEarning, setInputEarning] = useState('')
-
-  useEffect(() => {
-    let numberEarning = parseFloat(earning)
-
-    let needs = 0
-    let wants = 0
-    let savings = 0
-    if (numberEarning) {
-      needs = numberEarning * 0.5
-      wants = numberEarning * 0.3
-      savings = numberEarning * 0.2
-    }
-    const primaryText = document.getElementById('amount-primary')
-    if (primaryText) primaryText.innerHTML = numberWithCommas(needs)
-    const secondaryText = document.getElementById('amount-secondary')
-    if (secondaryText) secondaryText.innerHTML = numberWithCommas(wants)
-    const tertiaryText = document.getElementById('amount-tertiary')
-    if (tertiaryText) tertiaryText.innerHTML = numberWithCommas(savings)
-  }, [earning])
 
   function numberWithCommas(amount: number) {
     if (amount % 1 === 0) {
@@ -34,38 +15,84 @@ export default function BudgetForm() {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value
-    const sanitizedValue = rawValue.replace(/,/g, '')
-    setEarning(sanitizedValue)
-
-    const numericValue = rawValue.replace(/\D/g, '') // Remove non-numeric characters
-    const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ',') // Add comma separators every three digits
-    setInputEarning(formattedValue)
+    const numericValue = rawValue.replace(/\D/g, '')
+    setEarning(numericValue)
   }
+
+  const getDisplayValue = () => {
+    if (!earning) return ''
+    return earning.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
+  const numberEarning = parseFloat(earning) || 0
+  const needs = numberEarning * 0.5
+  const wants = numberEarning * 0.3
+  const savings = numberEarning * 0.2
+
   return (
-    <div className='rounded border border-primary border-t-8 my-12 px-6 py-6 shadow-md shadow-primary mx-auto md:w-1/2'>
-      <h4 className='font-bold text-lg mb-4'>The 50/30/20 Calculator</h4>
-      <p className='mb-4'>Most common effective method to budgeting your money.</p>
-      <hr className='mb-4 border-primary/50' />
-      <div className=''>
-        <p className='text-sm mb-4'>How much do you earn in a month (after tax)?</p>
-        <div className='mb-4'>
-          <input
-            type='text'
-            className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
-            placeholder='Enter amount'
-            min='0'
-            onInput={handleInputChange}
-            value={inputEarning}
-          />
-        </div>
-        <h4 className='font-bold mb-4'>Your results:</h4>
-        <p className='font-bold uppercase text-xs'>Needs</p>
-        <p id='amount-primary' className='text-2xl mb-4'></p>
-        <p className='font-bold uppercase text-xs'>Wants</p>
-        <p id='amount-secondary' className='text-2xl mb-4'></p>
-        <p className='font-bold uppercase text-xs'>Savings</p>
-        <p id='amount-tertiary' className='text-2xl'></p>
+    <div className='card my-12 max-w-2xl mx-auto border-t-4 border-t-primary animate-fade-in'>
+      <div className='flex items-center gap-3 mb-6'>
+        <MdAutoGraph className='h-6 w-6 text-primary' />
+        <h2 className='text-2xl font-bold'>The 50/30/20 Rule</h2>
       </div>
+      
+      <p className='text-neutral-300 mb-6'>
+        Master your finances using the most effective budgeting method. Split your income into three categories:
+      </p>
+
+      <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4 mb-8 space-y-2 text-sm'>
+        <div className='flex justify-between'>
+          <span className='text-neutral-400'>50% →</span>
+          <span className='text-primary font-semibold'>Needs (housing, food, utilities)</span>
+        </div>
+        <div className='flex justify-between'>
+          <span className='text-neutral-400'>30% →</span>
+          <span className='text-primary font-semibold'>Wants (entertainment, dining out)</span>
+        </div>
+        <div className='flex justify-between'>
+          <span className='text-neutral-400'>20% →</span>
+          <span className='text-primary font-semibold'>Savings (emergency fund, investments)</span>
+        </div>
+      </div>
+
+      <div className='form-group'>
+        <label htmlFor='income' className='form-label'>
+          Monthly Income <span className='text-neutral-400'>(after tax)</span>
+        </label>
+        <input
+          id='income'
+          type='text'
+          className='form-input text-lg'
+          placeholder='Enter your monthly income'
+          onChange={handleInputChange}
+          value={getDisplayValue()}
+        />
+      </div>
+
+      {earning && (
+        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-slide-in-up'>
+          {/* Needs */}
+          <div className='bg-gradient-to-br from-blue-500/10 to-blue-500/5 border border-blue-500/30 rounded-lg p-6 text-center'>
+            <p className='text-xs font-bold uppercase text-neutral-400 mb-2'>Needs</p>
+            <p className='text-3xl font-bold text-blue-400 mb-1'>{numberWithCommas(needs)}</p>
+            <p className='text-xs text-neutral-500'>50% of income</p>
+          </div>
+
+          {/* Wants */}
+          <div className='bg-gradient-to-br from-purple-500/10 to-purple-500/5 border border-purple-500/30 rounded-lg p-6 text-center'>
+            <p className='text-xs font-bold uppercase text-neutral-400 mb-2'>Wants</p>
+            <p className='text-3xl font-bold text-purple-400 mb-1'>{numberWithCommas(wants)}</p>
+            <p className='text-xs text-neutral-500'>30% of income</p>
+          </div>
+
+          {/* Savings */}
+          <div className='bg-gradient-to-br from-green-500/10 to-green-500/5 border border-green-500/30 rounded-lg p-6 text-center'>
+            <p className='text-xs font-bold uppercase text-neutral-400 mb-2'>Savings</p>
+            <p className='text-3xl font-bold text-green-400 mb-1'>{numberWithCommas(savings)}</p>
+            <p className='text-xs text-neutral-500'>20% of income</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

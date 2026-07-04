@@ -11,11 +11,11 @@ export default function SimpleHeader({ title, link }: SimpleHeaderProps) {
 
   return (
     <>
-      <Link className='inline-flex items-center font-semibold text-primary' href={href}>
-        <MdArrowBack className='mr-1 ' /> Back
-        {href === '/' ? ' to HomePage' : ''}
+      <Link className='inline-flex items-center gap-1 font-semibold text-primary hover:text-primary/80 transition-colors duration-300 mb-6' href={href}>
+        <MdArrowBack className='h-5 w-5' />
+        <span className='text-sm'>Back {href === '/' ? 'to Home' : ''}</span>
       </Link>
-      <h1 className='font-bold text-4xl sm:text-5xl tracking-tight'>{title}</h1>
+      <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6'>{title}</h1>
     </>
   )
 }

@@ -96,70 +96,81 @@ export default function LifePathForm() {
   }
 
   return (
-    <div>
-      <div className='rounded border w-full md:w-4/12 mx-auto border-primary border-t-8 px-6 py-6 shadow-md shadow-primary mb-8'>
-        <p className='text-center mb-4 text-base font-medium'>Insert your birthdate</p>
+    <div className='space-y-6'>
+      <div className='card max-w-md mx-auto border-t-4 border-t-primary'>
+        <h2 className='text-2xl font-bold text-center mb-6'>Enter Your Birthdate</h2>
 
         {/* Custom Date Input */}
-        <div className='flex items-center justify-center gap-2 mb-8'>
+        <div className='flex items-center justify-center gap-2 sm:gap-3 mb-8 bg-jetblack/50 rounded-lg p-4 border border-primary/20'>
           <input
             autoFocus
             ref={dayRef}
             type='text'
             maxLength={2}
             placeholder='DD'
-            className='w-12 h-12 text-center bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none '
+            className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
             onChange={(e) => handleInput(e, monthRef, 2)}
           />
-          <span className='text-gray-500'>/</span>
+          <span className='text-primary/60 text-2xl'>/</span>
           <input
             ref={monthRef}
             type='text'
             maxLength={2}
             placeholder='MM'
-            className='w-12 h-12 text-center bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none '
+            className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
             onChange={(e) => handleInput(e, yearRef, 2)}
             onKeyDown={(e) => handleBackspace(e, dayRef)}
           />
-          <span className='text-gray-500'>/</span>
+          <span className='text-primary/60 text-2xl'>/</span>
           <input
             ref={yearRef}
             type='text'
             maxLength={4}
             placeholder='YYYY'
-            className='w-16 h-12 text-center bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none '
+            className='w-20 sm:w-24 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
             onKeyDown={(e) => handleBackspace(e, monthRef)}
           />
         </div>
 
         {/* Error Message */}
-        {error && <p className='text-red-600 text-sm text-center mb-2'>{error}</p>}
+        {error && (
+          <div className='bg-red-500/10 border border-red-500/30 rounded-lg p-3 mb-4'>
+            <p className='text-red-400 text-sm text-center'>{error}</p>
+          </div>
+        )}
 
         <button
           onClick={calculateLifePath}
-          className='block w-full bg-primary rounded p-2 border-primary border-2 shadow-md shadow-primary transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 mt-2 font-bold'>
-          Calculate Your Life Path Number
+          className='btn-primary w-full py-4 text-lg font-bold uppercase'>
+          Calculate Life Path
         </button>
       </div>
 
+      {/* Results */}
       {lifePathNumber !== 0 && (
-        <div className='grid lg:grid-cols-[30%_70%] lg:space-x-4 mx-auto mb-12 w-full'>
-          <div className='rounded mb-4 border border-primary border-t-8 px-6 py-6 shadow-md shadow-primary h-fit w-full lg:w-auto'>
-            <p className='text-center'>
-              Your Life Path Number is:
-              <span className='block font-bold text-8xl'>{lifePathNumber}</span>
-            </p>
+        <div className='grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 animate-slide-in-up'>
+          {/* Life Path Number */}
+          <div className='card border-t-4 border-t-primary h-fit'>
+            <p className='text-neutral-300 text-sm mb-2 text-center'>Your Life Path Number</p>
+            <div className='bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-xl p-8 text-center'>
+              <span className='block font-bold text-7xl sm:text-8xl text-primary'>{lifePathNumber}</span>
+            </div>
           </div>
-          <div className='rounded border border-primary border-t-8 px-6 py-6 shadow-md shadow-primary w-full lg:w-auto'>
-            <p className='font-bold text-justify'>Numerology No. {lifePathNumber} Explained:</p>
-            {description && <p className='text-justify'>{description}</p>}
+
+          {/* Description */}
+          <div className='card border-t-4 border-t-primary'>
+            <h3 className='text-xl font-bold mb-4 text-primary'>Numerology Path {lifePathNumber}</h3>
+            {description && <p className='text-neutral-300 leading-relaxed mb-6'>{description}</p>}
+            
             {traits.length > 0 && (
-              <div className='mt-4'>
-                <p className='font-bold text-xl mb-2'>Common Traits:</p>
-                <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                  {/* Using Tailwind CSS for grid layout */}
+              <div>
+                <p className='font-bold text-lg mb-3 text-neutral-200'>Common Traits:</p>
+                <ul className='grid grid-cols-2 gap-2'>
                   {traits.map((trait, index) => (
-                    <li key={index}>{trait}</li>
+                    <li key={index} className='flex items-center gap-2 text-sm text-neutral-300'>
+                      <span className='text-primary'>✓</span>
+                      <span>{trait}</span>
+                    </li>
                   ))}
                 </ul>
               </div>

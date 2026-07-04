@@ -75,54 +75,69 @@ export default function Pomodoro() {
   };
 
   return (
-    <div className='flex justify-center h-[85dvh]'>
-      <div className='text-center'>
-        <div className='flex justify-center gap-2 mb-6'>
-          <button
-            className={`px-5 py-2 rounded-full font-semibold transition-colors ${
-              mode === 'pomodoro' ? 'bg-primary text-white' : 'border border-primary'
-            }`}
-            onClick={() => {
-              setMode('pomodoro')
-              setIsRunning(false)
-            }}>
-            Pomodoro
-          </button>
-          <button
-            className={`px-5 py-2 rounded-full font-semibold transition-colors ${
-              mode === 'shortBreak' ? 'bg-primary text-white' : 'border border-primary'
-            }`}
-            onClick={() => {
-              setMode('shortBreak')
-              setIsRunning(false)
-            }}>
-            Short Break
-          </button>
-          <button
-            className={`px-5 py-2 rounded-full font-semibold transition-colors ${
-              mode === 'longBreak' ? 'bg-primary text-white' : 'border border-primary'
-            }`}
-            onClick={() => {
-              setMode('longBreak')
-              setIsRunning(false)
-            }}>
-            Long Break
-          </button>
+    <div className='card my-12 max-w-2xl mx-auto border-t-4 border-t-primary'>
+      <div className='flex justify-center gap-2 mb-8 flex-wrap'>
+        <button
+          className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
+            mode === 'pomodoro'
+              ? 'bg-primary text-jetblack shadow-lg shadow-primary/50'
+              : 'border border-primary/50 hover:border-primary hover:bg-primary/10'
+          }`}
+          onClick={() => {
+            setMode('pomodoro')
+            setIsRunning(false)
+          }}>
+          🍅 Pomodoro
+        </button>
+        <button
+          className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
+            mode === 'shortBreak'
+              ? 'bg-primary text-jetblack shadow-lg shadow-primary/50'
+              : 'border border-primary/50 hover:border-primary hover:bg-primary/10'
+          }`}
+          onClick={() => {
+            setMode('shortBreak')
+            setIsRunning(false)
+          }}>
+          ☕ Short Break
+        </button>
+        <button
+          className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
+            mode === 'longBreak'
+              ? 'bg-primary text-jetblack shadow-lg shadow-primary/50'
+              : 'border border-primary/50 hover:border-primary hover:bg-primary/10'
+          }`}
+          onClick={() => {
+            setMode('longBreak')
+            setIsRunning(false)
+          }}>
+          🌴 Long Break
+        </button>
+      </div>
+
+      <div className='bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-2xl py-16 sm:py-20 mb-8 text-center'>
+        <p className='text-neutral-400 text-sm sm:text-base mb-4 capitalize'>
+          {mode === 'pomodoro' ? 'Focus Time' : mode === 'shortBreak' ? 'Short Break' : 'Long Break'}
+        </p>
+        <div className='text-6xl sm:text-8xl font-mono font-bold text-primary mb-2'>
+          {formatTime(secondsLeft)}
         </div>
-        <div className='text-9xl font-mono mb-6'>{formatTime(secondsLeft)}</div>
-        {/* <div className='text-lg mb-4 capitalize'>{mode.replace(/([A-Z])/g, ' $1')}</div> */}
-        <div className='flex justify-center gap-4'>
-          <button
-            onClick={handleStartPause}
-            className='px-6 py-2 border border-primary text-white rounded-xl hover:bg-primary transition'>
-            {isRunning ? 'Pause' : 'Start'}
-          </button>
-          <button
-            onClick={handleReset}
-            className='px-6 py-2 border border-gray-400 rounded-xl hover:bg-gray-100 hover:text-black transition'>
-            Reset
-          </button>
-        </div>
+        <p className='text-neutral-500 text-xs sm:text-sm'>
+          Pomodoros completed: <span className='text-primary font-semibold'>{pomodoroCount}</span>
+        </p>
+      </div>
+
+      <div className='flex justify-center gap-3 sm:gap-4'>
+        <button
+          onClick={handleStartPause}
+          className='btn-primary px-8 py-3 sm:py-4 font-semibold text-base sm:text-lg flex-1 sm:flex-none'>
+          {isRunning ? '⏸ Pause' : '▶ Start'}
+        </button>
+        <button
+          onClick={handleReset}
+          className='btn-secondary px-8 py-3 sm:py-4 font-semibold text-base sm:text-lg flex-1 sm:flex-none'>
+          ↻ Reset
+        </button>
       </div>
     </div>
   )

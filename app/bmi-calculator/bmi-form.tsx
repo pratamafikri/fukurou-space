@@ -23,7 +23,7 @@ export default function BMIForm() {
   }
 
   function getCategory(bmiResult: string): { category: string; tip: string } {
-    let bmi = parseInt(bmiResult)
+    let bmi = parseFloat(bmiResult)
     let category: string
     let tip: string
 
@@ -75,68 +75,100 @@ export default function BMIForm() {
   }
 
   return (
-    <div className='rounded border border-primary border-t-8 my-12 px-6 py-6 shadow-md shadow-primary mx-auto md:w-8/12'>
-      <div className={`${result != '' ? 'hidden' : ''}`}>
-        <div className='grid grid-cols-2 gap-4 w-5/6 md:w-4/5 lg:w-1/2 mx-auto mb-4'>
-          <div
-            className={`${
-              gender == 'male' ? 'bg-primary' : ''
-            } p-4 border border-b-4 border-primary rounded flex flex-col items-center hover:bg-primary hover:cursor-pointer transition duration-300`}
-            onClick={() => setGender('male')}>
-            <FaMars className='h-8 w-8 mb-2' />
-            <span className='font-semibold'>Male</span>
+    <div className='card my-12 max-w-2xl mx-auto border-t-4 border-t-primary'>
+      {result === '' ? (
+        <div className='space-y-6 animate-fade-in'>
+          {/* Gender Selection */}
+          <div>
+            <p className='form-label'>Select Gender</p>
+            <div className='grid grid-cols-2 gap-3 sm:gap-4'>
+              <button
+                onClick={() => setGender('male')}
+                className={`p-4 rounded-lg border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
+                  gender === 'male'
+                    ? 'border-primary bg-primary/20'
+                    : 'border-primary/30 hover:border-primary/60'
+                }`}>
+                <FaMars className='h-6 w-6 sm:h-8 sm:w-8' />
+                <span className='font-semibold text-sm'>Male</span>
+              </button>
+              <button
+                onClick={() => setGender('female')}
+                className={`p-4 rounded-lg border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
+                  gender === 'female'
+                    ? 'border-primary bg-primary/20'
+                    : 'border-primary/30 hover:border-primary/60'
+                }`}>
+                <FaVenus className='h-6 w-6 sm:h-8 sm:w-8' />
+                <span className='font-semibold text-sm'>Female</span>
+              </button>
+            </div>
           </div>
-          <div
-            className={`${
-              gender == 'female' ? 'bg-primary' : ''
-            } p-4 border border-b-4 border-primary rounded flex flex-col items-center hover:bg-primary hover:cursor-pointer transition duration-300`}
-            onClick={() => setGender('female')}>
-            <FaVenus className='h-8 w-8 mb-2' />
-            <span className='font-semibold'>Female</span>
-          </div>
-        </div>
-        <div className='flex flex-col gap-2'>
-          <label htmlFor=''>Body Height (cm)</label>
-          <input
-            autoFocus
-            type='number'
-            placeholder='Enter your body height (cm)'
-            className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
-            onChange={(e) => setHeight(e.target.value)}
-            min={0}
-            value={height}
-            required
-          />
-          <label htmlFor=''>Body Weight (kg)</label>
-          <input
-            type='number'
-            placeholder='Enter your body weight (kg)'
-            className='rounded w-full p-4 border border-primary bg-transparent focus:outline-none'
-            onChange={(e) => setWeight(e.target.value)}
-            min={0}
-            value={weight}
-            required
-          />
-        </div>
-        <button
-          className='disabled:bg-transparent disabled:border disabled:border-primary disabled:cursor-not-allowed rounded-full bg-primary uppercase py-2 px-10 font-semibold block mx-auto mt-12'
-          onClick={() => calculateBMI()}
-          disabled={!canCalculateBMI}>
-          Calculate BMI
-        </button>
-      </div>
-      <div className={`${result == '' ? 'hidden' : ''}`}>
-        <h4 className='font-semibold text-center'>Your BMI result:</h4>
-        <p className='mt-6 font-bold text-4xl text-center'>{result}</p>
-        <p className='text-center mb-8 font-semibold'>{getCategory(result).category}</p>
-        <p className='text-center mb-6'>{getCategory(result).tip}</p>
 
-        <button
-          className='rounded-full bg-primary uppercase py-2 px-10 font-semibold block mx-auto mt-12'
-          onClick={() => reset()}>
-          Back to calculator
-        </button>
-      </div>
+          {/* Input Fields */}
+          <div className='form-group'>
+            <label htmlFor='height' className='form-label'>
+              Body Height <span className='text-neutral-400'>(cm)</span>
+            </label>
+            <input
+              id='height'
+              autoFocus
+              type='number'
+              placeholder='Enter your body height'
+              className='form-input'
+              onChange={(e) => setHeight(e.target.value)}
+              min={0}
+              value={height}
+              required
+            />
+          </div>
+
+          <div className='form-group'>
+            <label htmlFor='weight' className='form-label'>
+              Body Weight <span className='text-neutral-400'>(kg)</span>
+            </label>
+            <input
+              id='weight'
+              type='number'
+              placeholder='Enter your body weight'
+              className='form-input'
+              onChange={(e) => setWeight(e.target.value)}
+              min={0}
+              value={weight}
+              required
+            />
+          </div>
+
+          {/* Calculate Button */}
+          <button
+            onClick={() => calculateBMI()}
+            disabled={!canCalculateBMI}
+            className='btn-primary w-full py-4 text-lg font-bold uppercase'>
+            Calculate BMI
+          </button>
+        </div>
+      ) : (
+        <div className='space-y-6 text-center animate-fade-in'>
+          <h3 className='text-lg font-semibold text-neutral-300'>Your BMI Result</h3>
+          
+          <div className='space-y-2 py-8 border border-primary/30 rounded-lg bg-primary/10'>
+            <p className='text-4xl sm:text-5xl font-bold text-primary'>{result}</p>
+            <p className='text-xl sm:text-2xl font-semibold text-neutral-200'>
+              {getCategory(result).category}
+            </p>
+          </div>
+
+          <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4 text-left'>
+            <p className='text-neutral-300 text-sm sm:text-base'>{getCategory(result).tip}</p>
+          </div>
+
+          <button
+            onClick={() => reset()}
+            className='btn-secondary w-full py-3 text-lg font-bold uppercase'>
+            Calculate Again
+          </button>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import BudgetForm from './budget-form'
-import SimpleHeader from '../components/simple_header'
 
 let pageTitle = '50/30/20 Budget Planner'
 
@@ -11,72 +10,137 @@ export const metadata: Metadata = {
 
 export default function BudgetPlanner() {
   return (
-    <main className='min-h-screen max-w-screen-lg mx-auto px-6 py-12'>
-      <SimpleHeader title={pageTitle} />
+    <main className='space-y-8'>
+      <BudgetForm />
 
-      <div className='mt-12'>
-        <BudgetForm />
+      <section className='space-y-6'>
+        <div className='card'>
+          <h3 className='subsection-title'>Introduction to Budgeting</h3>
+          <p className='content-text'>
+            Making a budget can assist you in making certain choices and appreciating the peace of mind. The 50-30-20 rule divides your
+            income into three fair categories and offers guidance on how much cash to utilize for each. With some basic understanding,
+            you&apos;ll get on the road to financial well-being.
+          </p>
+        </div>
 
-        <p className='text-justify mb-4'>
-          Making a budget can assist you in making certain choices and appreciating the peace of intellect. A
-          point-by-point budget, even though it can be complex to oversee. The 50-30-20 run the show parts costs into
-          fair three categories. It moreover offers proposals on how much cash to utilize for each. With some
-          fundamental data, you&apos;ll get on the street to budgetary well-being.
-        </p>
-        <h3 className='font-bold text-lg mb-2'>50/30/20 Budget Calculator</h3>
-        <p className='text-justify'>
-          To begin, insert your monthly take-home income then it will be automatically calculated into suggested
-          spending in three categories: 50% of net pay for needs, 30% for wants and 20% for savings and debt repayment.
-        </p>
+        <div className='card'>
+          <h3 className='subsection-title'>How to Use This Calculator</h3>
+          <p className='content-text'>
+            To begin, enter your monthly take-home income. The calculator will automatically compute your suggested spending in three
+            categories: 50% of net pay for needs, 30% for wants, and 20% for savings and debt repayment.
+          </p>
+        </div>
 
-        <h3 className='font-bold text-2xl mt-4 mb-2'>What is 50/30/20 method?</h3>
-        <p className='text-justify mb-4'>
-          The 50-30-20 rule recommends putting 50% of your money toward needs, 30% toward wants, and 20% toward savings.
-          The savings category also includes money you will need to realize your future goals. Let&apos;s take a closer
-          look at each category.
-        </p>
+        <div className='card'>
+          <h3 className='subsection-title'>The 50/30/20 Method Explained</h3>
+          <p className='content-text'>
+            The 50-30-20 rule recommends allocating your income into three balanced categories. It&apos;s a simple yet effective strategy
+            for achieving financial stability and building wealth over time.
+          </p>
+        </div>
 
-        <h4 className='font-bold text-lg mb-2'>Needs (50%)</h4>
-        <p className='text-justify'>
-          About half of your budget should go toward needs. These are expenses that must be met no matter what, such as:
-        </p>
-        <ul className='list-disc pl-4 mb-4'>
-          <li className=''>Utility Bills</li>
-          <li className=''>Rent or mortgage payments</li>
-          <li className=''>Health care</li>
-          <li className=''>Groceries</li>
-        </ul>
+        <div className='card'>
+          <h4 className='font-bold text-lg mb-4 text-primary'>Needs (50%)</h4>
+          <p className='content-text mb-4'>
+            About half of your budget should go toward needs. These are expenses that must be met no matter what:
+          </p>
+          <ul className='space-y-2 text-neutral-300 text-sm sm:text-base'>
+            <li className='flex gap-3'>
+              <span className='text-blue-400 flex-shrink-0'>•</span>
+              <span>Utility Bills</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-blue-400 flex-shrink-0'>•</span>
+              <span>Rent or mortgage payments</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-blue-400 flex-shrink-0'>•</span>
+              <span>Health care</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-blue-400 flex-shrink-0'>•</span>
+              <span>Groceries and food</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-blue-400 flex-shrink-0'>•</span>
+              <span>Transportation and insurance</span>
+            </li>
+          </ul>
+        </div>
 
-        <h4 className='font-bold text-lg mb-2'>Wants (30%)</h4>
-        <p className='text-justify'>
-          You subscribe to a streaming service to watch your favorite show, not because you need the subscription to
-          live. Wants are things you enjoy that you spend money on by choice, such as:
-        </p>
-        <ul className='list-disc pl-4 mb-4'>
-          <li className=''>Subcriptions</li>
-          <li className=''>Supplies for hobbies</li>
-          <li className=''>Restaurant meals</li>
-          <li className=''>Vacations</li>
-        </ul>
+        <div className='card'>
+          <h4 className='font-bold text-lg mb-4 text-purple-400'>Wants (30%)</h4>
+          <p className='content-text mb-4'>
+            Wants are things you enjoy that you spend money on by choice, not necessities for living. These should comprise about 30% of
+            your budget:
+          </p>
+          <ul className='space-y-2 text-neutral-300 text-sm sm:text-base'>
+            <li className='flex gap-3'>
+              <span className='text-purple-400 flex-shrink-0'>•</span>
+              <span>Streaming subscriptions</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-purple-400 flex-shrink-0'>•</span>
+              <span>Hobby supplies and equipment</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-purple-400 flex-shrink-0'>•</span>
+              <span>Restaurant meals and dining out</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-purple-400 flex-shrink-0'>•</span>
+              <span>Entertainment and events</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-purple-400 flex-shrink-0'>•</span>
+              <span>Vacations and travel</span>
+            </li>
+          </ul>
+        </div>
 
-        <h4 className='font-bold text-lg mb-2'>Savings (20%)</h4>
-        <p className='text-justify'>
-          The remaining 20% of your budget should go toward the future. You may put money in an emergency fund,
-          contribute to a retirement account, or save toward a down payment on a home. Paying down debt beyond the
-          minimum payment amount belongs in this category, too.
-        </p>
+        <div className='card'>
+          <h4 className='font-bold text-lg mb-4 text-green-400'>Savings (20%)</h4>
+          <p className='content-text mb-4'>
+            The remaining 20% of your budget should go toward building your future. This includes emergency funds, retirement savings,
+            debt repayment, and other financial goals:
+          </p>
+          <ul className='space-y-2 text-neutral-300 text-sm sm:text-base'>
+            <li className='flex gap-3'>
+              <span className='text-green-400 flex-shrink-0'>•</span>
+              <span>Emergency fund (3-6 months of expenses)</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-green-400 flex-shrink-0'>•</span>
+              <span>Retirement account contributions</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-green-400 flex-shrink-0'>•</span>
+              <span>Down payment savings for major purchases</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-green-400 flex-shrink-0'>•</span>
+              <span>Extra debt payments beyond minimums</span>
+            </li>
+            <li className='flex gap-3'>
+              <span className='text-green-400 flex-shrink-0'>•</span>
+              <span>Investment and long-term goals</span>
+            </li>
+          </ul>
+        </div>
 
-        <p className='my-6'>
-          Source:&nbsp;
-          <a
-            href='https://www.unfcu.org/financial-wellness/50-30-20-rule/'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='font-semibold text-primary'>
-            Budgeting basics: The 50-30-20 rule
-          </a>
-        </p>
-      </div>
+        <div className='card bg-primary/10 border-primary'>
+          <p className='text-neutral-300 text-sm'>
+            <span className='font-semibold text-primary'>Learn more:</span>{' '}
+            <a
+              href='https://www.unfcu.org/financial-wellness/50-30-20-rule/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-primary hover:underline transition-all duration-300'>
+              Budgeting Basics: The 50-30-20 Rule
+            </a>
+          </p>
+        </div>
+      </section>
     </main>
   )
 }
