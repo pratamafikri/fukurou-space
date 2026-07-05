@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Converter from './converter'
 
-let pageTitle = 'Unit Converter'
+const pageTitle = 'Unit Converter'
 
 export const metadata: Metadata = {
   title: pageTitle + ' | Fukurou Space',

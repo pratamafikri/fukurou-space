@@ -103,14 +103,5 @@ body {
   animation: slideInUp 0.3s ease-in-out;
 }
 
-/* Footer styling */
-@layer components {
-  footer {
-    @apply border-t border-primary/30 py-8 mt-12 text-center;
-  }
 
-  footer p {
-    @apply text-neutral-400 mb-2 text-sm;
-  }
-}
 

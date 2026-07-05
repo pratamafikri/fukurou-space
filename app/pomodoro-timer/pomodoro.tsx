@@ -26,7 +26,7 @@ export default function Pomodoro() {
   }, [mode]);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setInterval>;
     if (isRunning) {
       timer = setInterval(() => {
         setSecondsLeft((prev) => {
@@ -48,12 +48,13 @@ export default function Pomodoro() {
             if (mode === 'pomodoro') {
               const newCount = pomodoroCount + 1;
               setPomodoroCount(newCount);
-              setMode(newCount % 4 === 0 ? 'longBreak' : 'shortBreak');
+              const nextMode = newCount % 4 === 0 ? 'longBreak' : 'shortBreak';
+              setMode(nextMode);
+              return DURATIONS[nextMode];
             } else {
               setMode('pomodoro');
+              return DURATIONS.pomodoro;
             }
-
-            return DURATIONS[mode];
           }
           return prev - 1;
         });

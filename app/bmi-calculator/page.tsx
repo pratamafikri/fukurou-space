@@ -1,7 +1,7 @@
 import BMIForm from './bmi-form'
 import { Metadata } from 'next'
 
-let pageTitle = 'BMI Calculator'
+const pageTitle = 'BMI Calculator'
 
 export const metadata: Metadata = {
   title: pageTitle + ' | Fukurou Space',
@@ -67,7 +67,7 @@ export default function BMICalculator() {
             </li>
             <li className='flex gap-3'>
               <span className='text-primary flex-shrink-0'>•</span>
-              <span>Athletes and muscular individuals may have higher BMIs that don't reflect body fat</span>
+              <span>Athletes and muscular individuals may have higher BMIs that don&apos;t reflect body fat</span>
             </li>
             <li className='flex gap-3'>
               <span className='text-primary flex-shrink-0'>•</span>

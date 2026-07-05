@@ -19,7 +19,7 @@ export default function Home() {
           </div>
 
           <div className='card'>
-            <h3 className='subsection-title'>What's Inside?</h3>
+            <h3 className='subsection-title'>What&apos;s Inside?</h3>
             <ul className='space-y-3'>
               <li className='flex gap-3'>
                 <span className='text-primary flex-shrink-0'>→</span>

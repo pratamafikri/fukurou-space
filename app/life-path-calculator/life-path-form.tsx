@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { lifePathDescriptions } from './lifePathDescriptions'
-import './style.css'
 
 export default function LifePathForm() {
   const [lifePathNumber, setLifePathNumber] = useState(0)
@@ -85,7 +84,7 @@ export default function LifePathForm() {
 
     setLifePathNumber(finalLifePath)
 
-    const lifePathData = lifePathDescriptions[String(finalLifePath) as unknown as keyof typeof lifePathDescriptions]
+    const lifePathData = lifePathDescriptions[finalLifePath as keyof typeof lifePathDescriptions]
     if (lifePathData) {
       setDescription(lifePathData.description)
       setTraits(lifePathData.traits)
@@ -102,34 +101,37 @@ export default function LifePathForm() {
 
         {/* Custom Date Input */}
         <div className='flex items-center justify-center gap-2 sm:gap-3 mb-8 bg-jetblack/50 rounded-lg p-4 border border-primary/20'>
-          <input
-            autoFocus
-            ref={dayRef}
-            type='text'
-            maxLength={2}
-            placeholder='DD'
-            className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
-            onChange={(e) => handleInput(e, monthRef, 2)}
-          />
-          <span className='text-primary/60 text-2xl'>/</span>
-          <input
-            ref={monthRef}
-            type='text'
-            maxLength={2}
-            placeholder='MM'
-            className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
-            onChange={(e) => handleInput(e, yearRef, 2)}
-            onKeyDown={(e) => handleBackspace(e, dayRef)}
-          />
-          <span className='text-primary/60 text-2xl'>/</span>
-          <input
-            ref={yearRef}
-            type='text'
-            maxLength={4}
-            placeholder='YYYY'
-            className='w-20 sm:w-24 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
-            onKeyDown={(e) => handleBackspace(e, monthRef)}
-          />
+            <input
+              autoFocus
+              ref={dayRef}
+              type='text'
+              inputMode='numeric'
+              maxLength={2}
+              placeholder='DD'
+              className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
+              onChange={(e) => handleInput(e, monthRef, 2)}
+            />
+            <span className='text-primary/60 text-2xl'>/</span>
+            <input
+              ref={monthRef}
+              type='text'
+              inputMode='numeric'
+              maxLength={2}
+              placeholder='MM'
+              className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
+              onChange={(e) => handleInput(e, yearRef, 2)}
+              onKeyDown={(e) => handleBackspace(e, dayRef)}
+            />
+            <span className='text-primary/60 text-2xl'>/</span>
+            <input
+              ref={yearRef}
+              type='text'
+              inputMode='numeric'
+              maxLength={4}
+              placeholder='YYYY'
+              className='w-20 sm:w-24 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
+              onKeyDown={(e) => handleBackspace(e, monthRef)}
+            />
         </div>
 
         {/* Error Message */}
@@ -166,8 +168,8 @@ export default function LifePathForm() {
               <div>
                 <p className='font-bold text-lg mb-3 text-neutral-200'>Common Traits:</p>
                 <ul className='grid grid-cols-2 gap-2'>
-                  {traits.map((trait, index) => (
-                    <li key={index} className='flex items-center gap-2 text-sm text-neutral-300'>
+                  {traits.map((trait) => (
+                    <li key={trait} className='flex items-center gap-2 text-sm text-neutral-300'>
                       <span className='text-primary'>✓</span>
                       <span>{trait}</span>
                     </li>

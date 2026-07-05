@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import BudgetForm from './budget-form'
 
-let pageTitle = '50/30/20 Budget Planner'
+const pageTitle = '50/30/20 Budget Planner'
 
 export const metadata: Metadata = {
   title: pageTitle + ' | Fukurou space',

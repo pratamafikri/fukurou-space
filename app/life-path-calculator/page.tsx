@@ -1,7 +1,7 @@
 import LifePathForm from './life-path-form'
 import { Metadata } from 'next'
 
-let pageTitle = 'Life Path Calculator'
+const pageTitle = 'Life Path Calculator'
 
 export const metadata: Metadata = {
   title: pageTitle + ' | Fukurou space',

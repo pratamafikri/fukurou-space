@@ -12,59 +12,47 @@ export default function BMIForm() {
   const canCalculateBMI = weight !== '' && height !== ''
 
   function calculateBMI() {
-    const intWeight = parseInt(weight)
-    const intHeight = parseInt(height) / 100
+    const intWeight = parseInt(weight, 10)
+    const intHeight = parseInt(height, 10) / 100
+
+    if (isNaN(intWeight) || isNaN(intHeight) || intHeight === 0) {
+      return
+    }
 
     let bmi = intWeight / (intHeight * intHeight)
-
-    console.log(intWeight, intHeight, bmi)
 
     setResult(bmi.toFixed(2))
   }
 
   function getCategory(bmiResult: string): { category: string; tip: string } {
     let bmi = parseFloat(bmiResult)
-    let category: string
-    let tip: string
 
-    if (gender === 'male') {
-      if (bmi < 18.5) {
-        category = 'Underweight'
-        tip = 'Prioritize nutrient-rich foods to fuel your body and consider strength training to build muscle mass.'
-      } else if (bmi >= 18.5 && bmi < 25) {
-        category = 'Normal weight'
-        tip = 'Maintain a balanced diet and active lifestyle for overall health and wellbeing.'
-      } else if (bmi >= 25 && bmi < 30) {
-        category = 'Overweight'
-        tip = 'Focus on portion control and regular exercise to achieve a healthy weight.'
-      } else if (bmi >= 30) {
-        category = 'Obese'
-        tip = 'Seek professional support and implement gradual lifestyle changes for sustainable weight management.'
-      } else {
-        category = ''
-        tip = ''
-      }
-    } else {
-      // Female
-      if (bmi < 18.5) {
-        category = 'Underweight'
-        tip = 'Prioritize nutrient-rich foods to fuel your body and consider strength training to build muscle mass.'
-      } else if (bmi >= 18.5 && bmi < 24) {
-        category = 'Normal weight'
-        tip = 'Maintain a balanced diet and active lifestyle for overall health and wellbeing.'
-      } else if (bmi >= 24 && bmi < 29) {
-        category = 'Overweight'
-        tip = 'Focus on portion control and regular exercise to achieve a healthy weight.'
-      } else if (bmi >= 29) {
-        category = 'Obese'
-        tip = 'Seek professional support and implement gradual lifestyle changes for sustainable weight management.'
-      } else {
-        category = ''
-        tip = ''
+    const thresholds = gender === 'male'
+      ? { normal: 25, overweight: 30 }
+      : { normal: 24, overweight: 29 }
+
+    if (bmi < 18.5) {
+      return {
+        category: 'Underweight',
+        tip: 'Prioritize nutrient-rich foods to fuel your body and consider strength training to build muscle mass.',
       }
     }
-
-    return { category, tip }
+    if (bmi < thresholds.normal) {
+      return {
+        category: 'Normal weight',
+        tip: 'Maintain a balanced diet and active lifestyle for overall health and wellbeing.',
+      }
+    }
+    if (bmi < thresholds.overweight) {
+      return {
+        category: 'Overweight',
+        tip: 'Focus on portion control and regular exercise to achieve a healthy weight.',
+      }
+    }
+    return {
+      category: 'Obese',
+      tip: 'Seek professional support and implement gradual lifestyle changes for sustainable weight management.',
+    }
   }
 
   function reset() {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { capitalize } from '@/app/lib/utils'
 
 const units = {
   length: {
@@ -138,7 +139,7 @@ export default function Converter() {
         <select id='category' value={category} onChange={(e) => handleCategoryChange(e.target.value)} className='form-input'>
           {Object.keys(units).map((cat) => (
             <option key={cat} value={cat} className='bg-jetblack'>
-              {cat[0].toUpperCase() + cat.slice(1)}
+              {capitalize(cat)}
             </option>
           ))}
         </select>
@@ -155,7 +156,7 @@ export default function Converter() {
           <select id='inputUnit' value={inputUnit} onChange={(e) => setInputUnit(e.target.value)} className='form-input'>
             {currentUnits.map((unit) => (
               <option key={unit} value={unit} className='bg-jetblack'>
-                {unit[0].toUpperCase() + unit.slice(1)}
+                {capitalize(unit)}
               </option>
             ))}
           </select>
@@ -199,7 +200,7 @@ export default function Converter() {
             className='form-input'>
             {currentUnits.map((unit) => (
               <option key={unit} value={unit} className='bg-jetblack'>
-                {unit[0].toUpperCase() + unit.slice(1)}
+                {capitalize(unit)}
               </option>
             ))}
           </select>

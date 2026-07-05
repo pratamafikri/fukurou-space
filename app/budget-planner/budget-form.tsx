@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { MdAutoGraph } from 'react-icons/md'
 
 export default function BudgetForm() {

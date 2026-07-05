@@ -3,6 +3,15 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { features, menus } from '../menu'
+import { capitalize } from '@/app/lib/utils'
+
+const routeNameMap = new Map<string, string>()
+menus.forEach((menu) => {
+  routeNameMap.set(menu.route, menu.name)
+})
+features.forEach((feature) => {
+  routeNameMap.set(feature.route, feature.name)
+})
 
 export default function Breadcrumb() {
   const pathname = usePathname()
@@ -12,15 +21,6 @@ export default function Breadcrumb() {
     const paths = pathname.split('/').filter(Boolean)
     const breadcrumbs = [{ name: 'Home', path: '/' }]
 
-    // Create a mapping of routes to names from menu
-    const routeNameMap = new Map()
-    menus.forEach((menu) => {
-      routeNameMap.set(menu.route, menu.name)
-    })
-    features.forEach((feature) => {
-      routeNameMap.set(feature.route, feature.name)
-    })
-
     let currentPath = ''
     paths.forEach((path) => {
       currentPath += `/${path}`
@@ -29,7 +29,7 @@ export default function Breadcrumb() {
         routeNameMap.get(currentPath) ||
         path
           .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .map(capitalize)
           .join(' ')
       breadcrumbs.push({ name, path: currentPath })
     })

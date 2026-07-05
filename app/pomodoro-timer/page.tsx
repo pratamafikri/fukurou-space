@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Pomodoro from './pomodoro'
 
-let pageTitle = 'Pomodoro Timer'
+const pageTitle = 'Pomodoro Timer'
 
 export const metadata: Metadata = {
   title: pageTitle + ' | Fukurou Space',

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { HiMenu, HiX } from 'react-icons/hi'
 import Link from 'next/link'
-import { features, menus } from '../menu'
 import { GiOwl } from 'react-icons/gi'
+import NavLinks from './nav-links'
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -47,26 +47,7 @@ export default function MobileNav() {
 
         {/* Navigation Links */}
         <div className='py-4 px-2'>
-          <Link
-            href={menus[0].route}
-            onClick={closeMenu}
-            className='flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm hover:bg-primary/20 transition-colors duration-300 mb-2'>
-            {menus[0].icon}
-            {menus[0].name}
-          </Link>
-
-          <div className='my-4 border-t border-primary/30' />
-
-          {features.map((application, index) => (
-            <Link
-              key={index}
-              href={application.route}
-              onClick={closeMenu}
-              className='flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm hover:bg-primary/20 transition-colors duration-300 mb-1'>
-              {application.icon}
-              {application.name}
-            </Link>
-          ))}
+          <NavLinks onClick={closeMenu} />
         </div>
       </nav>
     </>
