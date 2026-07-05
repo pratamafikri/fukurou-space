@@ -6,6 +6,8 @@ import { menus, features } from '../menu'
 export default function PageTitle() {
   const pathname = usePathname()
 
+  if (pathname === '/') return null
+
   // Combine all menu items
   const allMenuItems = [...menus, ...features]
 
@@ -13,7 +15,7 @@ export default function PageTitle() {
   const currentPage = allMenuItems.find((item) => item.route === pathname)
 
   return (
-    <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-8 animate-slide-in-up'>
+    <h1 className='font-display text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-8 animate-slide-in-up'>
       {currentPage?.name || 'Page Not Found'}
     </h1>
   )

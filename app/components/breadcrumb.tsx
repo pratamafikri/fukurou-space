@@ -16,6 +16,8 @@ features.forEach((feature) => {
 export default function Breadcrumb() {
   const pathname = usePathname()
 
+  if (pathname === '/') return null
+
   // Generate breadcrumb items from pathname
   const generateBreadcrumbs = () => {
     const paths = pathname.split('/').filter(Boolean)

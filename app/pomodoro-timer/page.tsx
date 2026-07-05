@@ -31,15 +31,15 @@ export default function PomodoroTimer() {
             cycles, you reward yourself with a longer, more substantial break of 15-30 minutes.
           </p>
           <div className='space-y-3'>
-            <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4'>
+            <div className='bg-surface border border-primary/20 rounded-lg p-4'>
               <p className='font-semibold text-primary mb-1'>Focus Block: 25 minutes</p>
               <p className='text-sm text-neutral-400'>Intense work on a single task</p>
             </div>
-            <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4'>
+            <div className='bg-surface border border-primary/20 rounded-lg p-4'>
               <p className='font-semibold text-primary mb-1'>Short Break: 5 minutes</p>
               <p className='text-sm text-neutral-400'>Rest and recharge</p>
             </div>
-            <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4'>
+            <div className='bg-surface border border-primary/20 rounded-lg p-4'>
               <p className='font-semibold text-primary mb-1'>Long Break: 15-30 minutes</p>
               <p className='text-sm text-neutral-400'>After completing 4 pomodoros</p>
             </div>

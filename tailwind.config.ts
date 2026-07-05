@@ -8,10 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors : {
-        'primary': '#048A81',
-        'jetblack': '#333333'
-      }
+      colors: {
+        'primary': '#D4A574',
+        'canvas': '#161618',
+        'surface': '#1E1E22',
+      },
+      fontFamily: {
+        display: ['var(--font-display)', 'serif'],
+        mono: ['var(--font-mono)', 'monospace'],
+      },
     },
   },
   plugins: [],

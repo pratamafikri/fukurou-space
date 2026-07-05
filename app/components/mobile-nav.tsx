@@ -33,16 +33,16 @@ export default function MobileNav() {
 
       {/* Mobile Navigation Sidebar */}
       <nav
-        className={`fixed top-0 left-0 h-screen w-64 bg-jetblack border-r border-primary z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto
+        className={`fixed top-0 left-0 h-screen w-64 bg-surface border-r border-primary/30 z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:hidden`}>
         {/* Header */}
-        <div className='border-b border-primary py-6 px-4 sticky top-0 bg-jetblack'>
-          <div className='flex items-center justify-center gap-2 mb-2'>
-            <GiOwl className='h-8 w-8' />
-            <h1 className='font-bold text-xl tracking-tight'>Fukurou Space</h1>
+        <div className='border-b border-primary/30 py-6 px-4 sticky top-0 bg-canvas'>
+          <div className='owl-glow flex justify-center items-center mb-2'>
+            <GiOwl className='h-8 w-8 text-primary' />
           </div>
-          <p className='tracking-normal text-xs text-center text-neutral-400'>when boredom meets code</p>
+          <h1 className='font-display text-xl text-center text-primary'>Fukurou Space</h1>
+          <p className='tracking-normal text-xs text-center text-neutral-400 mt-1'>when boredom meets code</p>
         </div>
 
         {/* Navigation Links */}

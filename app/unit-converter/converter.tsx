@@ -28,9 +28,9 @@ const units = {
     day: 1 / 86400,
   },
   temperature: {
-    celsius: 'celsius',
-    fahrenheit: 'fahrenheit',
-    kelvin: 'kelvin',
+    celsius: 1,
+    fahrenheit: 1,
+    kelvin: 1,
   },
   area: {
     'square meter': 1,
@@ -129,6 +129,8 @@ export default function Converter() {
   }
 
   const currentUnits = Object.keys(units[category as keyof typeof units])
+  const fromUnits = currentUnits.filter(unit => unit !== outputUnit)
+  const toUnits = currentUnits.filter(unit => unit !== inputUnit)
 
   return (
     <div className='card my-12 max-w-2xl mx-auto border-t-4 border-t-primary animate-fade-in'>
@@ -138,7 +140,7 @@ export default function Converter() {
         </label>
         <select id='category' value={category} onChange={(e) => handleCategoryChange(e.target.value)} className='form-input'>
           {Object.keys(units).map((cat) => (
-            <option key={cat} value={cat} className='bg-jetblack'>
+            <option key={cat} value={cat} className='bg-surface'>
               {capitalize(cat)}
             </option>
           ))}
@@ -154,8 +156,8 @@ export default function Converter() {
             From Unit
           </label>
           <select id='inputUnit' value={inputUnit} onChange={(e) => setInputUnit(e.target.value)} className='form-input'>
-            {currentUnits.map((unit) => (
-              <option key={unit} value={unit} className='bg-jetblack'>
+            {fromUnits.map((unit) => (
+              <option key={unit} value={unit} className='bg-surface'>
                 {capitalize(unit)}
               </option>
             ))}
@@ -179,9 +181,27 @@ export default function Converter() {
         </div>
       </div>
 
-      {/* Arrow or separator */}
+      {/* Swap button */}
       <div className='flex justify-center mb-8'>
-        <div className='text-primary text-2xl'>⇄</div>
+        <button
+          onClick={() => {
+            const newInput = outputUnit
+            const newOutput = inputUnit
+            const newInputValue = outputValue
+            setInputUnit(newInput)
+            setOutputUnit(newOutput)
+            setInputValue(newInputValue)
+            if (newInputValue) {
+              const num = parseFloat(newInputValue)
+              if (!isNaN(num)) {
+                setOutputValue(convert(category, num, newInput, newOutput).toString())
+              }
+            }
+          }}
+          className='btn-secondary p-3 rounded-full text-lg leading-none'
+          aria-label='Swap units'>
+          ⇄
+        </button>
       </div>
 
       {/* Output Section */}
@@ -198,8 +218,8 @@ export default function Converter() {
               handleConvert(inputValue)
             }}
             className='form-input'>
-            {currentUnits.map((unit) => (
-              <option key={unit} value={unit} className='bg-jetblack'>
+            {toUnits.map((unit) => (
+              <option key={unit} value={unit} className='bg-surface'>
                 {capitalize(unit)}
               </option>
             ))}
@@ -215,7 +235,7 @@ export default function Converter() {
             placeholder='Result'
             value={outputValue}
             readOnly
-            className='form-input bg-jetblack/50 cursor-default'
+            className='form-input bg-surface cursor-default'
           />
         </div>
       </div>

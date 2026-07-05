@@ -128,7 +128,7 @@ export default function BudgetPlanner() {
           </ul>
         </div>
 
-        <div className='card bg-primary/10 border-primary'>
+        <div className='card bg-primary/10 border-primary/30'>
           <p className='text-neutral-300 text-sm'>
             <span className='font-semibold text-primary'>Learn more:</span>{' '}
             <a

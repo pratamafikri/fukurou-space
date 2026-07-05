@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const DURATIONS = {
   pomodoro: 25 * 60,
@@ -13,13 +13,15 @@ export default function Pomodoro() {
   const [secondsLeft, setSecondsLeft] = useState(DURATIONS.pomodoro);
   const [isRunning, setIsRunning] = useState(false);
   const [pomodoroCount, setPomodoroCount] = useState(0);
+  const [toast, setToast] = useState<string | null>(null);
 
-  // Request notification permission once on mount
   useEffect(() => {
-    if ('Notification' in window && Notification.permission !== 'granted') {
-      Notification.requestPermission();
-    }
-  }, []);
+    if (!toast) return
+    const id = setTimeout(() => setToast(null), 4000)
+    return () => clearTimeout(id)
+  }, [toast])
+
+  const showToast = useCallback((msg: string) => setToast(msg), [])
 
   useEffect(() => {
     setSecondsLeft(DURATIONS[mode]);
@@ -34,15 +36,8 @@ export default function Pomodoro() {
             clearInterval(timer);
             setIsRunning(false);
 
-            // Trigger notification
-            if ('Notification' in window && Notification.permission === 'granted') {
-              new Notification('Time is up!', {
-                body:
-                  mode === 'pomodoro'
-                    ? 'Take a short break ☕'
-                    : 'Get back to work! 💼',
-              });
-            }
+            // Show in-page toast
+            showToast(mode === 'pomodoro' ? 'Take a short break ☕' : 'Get back to work! 💼');
 
             // Auto switch mode, but wait for manual start
             if (mode === 'pomodoro') {
@@ -61,7 +56,7 @@ export default function Pomodoro() {
       }, 1000);
     }
     return () => clearInterval(timer);
-  }, [isRunning, mode, pomodoroCount]);
+  }, [isRunning, mode, pomodoroCount, showToast]);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -81,7 +76,7 @@ export default function Pomodoro() {
         <button
           className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
             mode === 'pomodoro'
-              ? 'bg-primary text-jetblack shadow-lg shadow-primary/50'
+              ? 'bg-primary text-canvas shadow-lg shadow-primary/30'
               : 'border border-primary/50 hover:border-primary hover:bg-primary/10'
           }`}
           onClick={() => {
@@ -93,7 +88,7 @@ export default function Pomodoro() {
         <button
           className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
             mode === 'shortBreak'
-              ? 'bg-primary text-jetblack shadow-lg shadow-primary/50'
+              ? 'bg-primary text-canvas shadow-lg shadow-primary/30'
               : 'border border-primary/50 hover:border-primary hover:bg-primary/10'
           }`}
           onClick={() => {
@@ -105,7 +100,7 @@ export default function Pomodoro() {
         <button
           className={`px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
             mode === 'longBreak'
-              ? 'bg-primary text-jetblack shadow-lg shadow-primary/50'
+              ? 'bg-primary text-canvas shadow-lg shadow-primary/30'
               : 'border border-primary/50 hover:border-primary hover:bg-primary/10'
           }`}
           onClick={() => {
@@ -117,7 +112,7 @@ export default function Pomodoro() {
       </div>
 
       <div className='bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-2xl py-16 sm:py-20 mb-8 text-center'>
-        <p className='text-neutral-400 text-sm sm:text-base mb-4 capitalize'>
+        <p className='text-neutral-400 text-sm sm:text-base mb-4 capitalize font-display tracking-wider'>
           {mode === 'pomodoro' ? 'Focus Time' : mode === 'shortBreak' ? 'Short Break' : 'Long Break'}
         </p>
         <div className='text-6xl sm:text-8xl font-mono font-bold text-primary mb-2'>
@@ -140,6 +135,14 @@ export default function Pomodoro() {
           ↻ Reset
         </button>
       </div>
+
+      {toast && (
+        <div className='fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-slide-in-up'>
+          <div className='bg-primary text-canvas font-semibold px-6 py-3 rounded-lg shadow-lg'>
+            {toast}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

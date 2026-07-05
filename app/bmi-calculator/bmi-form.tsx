@@ -9,7 +9,7 @@ export default function BMIForm() {
   const [gender, setGender] = useState('male')
   const [result, setResult] = useState('')
 
-  const canCalculateBMI = weight !== '' && height !== ''
+  const canCalculateBMI = weight !== '' && height !== '' && +weight > 0 && +height > 0
 
   function calculateBMI() {
     const intWeight = parseInt(weight, 10)
@@ -140,13 +140,13 @@ export default function BMIForm() {
           <h3 className='text-lg font-semibold text-neutral-300'>Your BMI Result</h3>
           
           <div className='space-y-2 py-8 border border-primary/30 rounded-lg bg-primary/10'>
-            <p className='text-4xl sm:text-5xl font-bold text-primary'>{result}</p>
+            <p className='text-4xl sm:text-5xl font-bold font-mono text-primary'>{result}</p>
             <p className='text-xl sm:text-2xl font-semibold text-neutral-200'>
               {getCategory(result).category}
             </p>
           </div>
 
-          <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4 text-left'>
+          <div className='bg-surface border border-primary/20 rounded-lg p-4 text-left'>
             <p className='text-neutral-300 text-sm sm:text-base'>{getCategory(result).tip}</p>
           </div>
 

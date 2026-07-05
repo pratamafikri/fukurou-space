@@ -14,14 +14,10 @@ export default function BudgetForm() {
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = event.target.value
-    const numericValue = rawValue.replace(/\D/g, '')
-    setEarning(numericValue)
-  }
-
-  const getDisplayValue = () => {
-    if (!earning) return ''
-    return earning.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    const raw = event.target.value
+    if (/^\d*\.?\d*$/.test(raw) || raw === '') {
+      setEarning(raw)
+    }
   }
 
   const numberEarning = parseFloat(earning) || 0
@@ -40,7 +36,7 @@ export default function BudgetForm() {
         Master your finances using the most effective budgeting method. Split your income into three categories:
       </p>
 
-      <div className='bg-jetblack/50 border border-primary/20 rounded-lg p-4 mb-8 space-y-2 text-sm'>
+      <div className='bg-surface border border-primary/20 rounded-lg p-4 mb-8 space-y-2 text-sm'>
         <div className='flex justify-between'>
           <span className='text-neutral-400'>50% →</span>
           <span className='text-primary font-semibold'>Needs (housing, food, utilities)</span>
@@ -62,10 +58,11 @@ export default function BudgetForm() {
         <input
           id='income'
           type='text'
+          inputMode='decimal'
           className='form-input text-lg'
           placeholder='Enter your monthly income'
           onChange={handleInputChange}
-          value={getDisplayValue()}
+          value={earning}
         />
       </div>
 
@@ -74,21 +71,21 @@ export default function BudgetForm() {
           {/* Needs */}
           <div className='bg-gradient-to-br from-blue-500/10 to-blue-500/5 border border-blue-500/30 rounded-lg p-6 text-center'>
             <p className='text-xs font-bold uppercase text-neutral-400 mb-2'>Needs</p>
-            <p className='text-3xl font-bold text-blue-400 mb-1'>{numberWithCommas(needs)}</p>
+            <p className='text-3xl font-bold font-mono text-blue-400 mb-1'>{numberWithCommas(needs)}</p>
             <p className='text-xs text-neutral-500'>50% of income</p>
           </div>
 
           {/* Wants */}
           <div className='bg-gradient-to-br from-purple-500/10 to-purple-500/5 border border-purple-500/30 rounded-lg p-6 text-center'>
             <p className='text-xs font-bold uppercase text-neutral-400 mb-2'>Wants</p>
-            <p className='text-3xl font-bold text-purple-400 mb-1'>{numberWithCommas(wants)}</p>
+            <p className='text-3xl font-bold font-mono text-purple-400 mb-1'>{numberWithCommas(wants)}</p>
             <p className='text-xs text-neutral-500'>30% of income</p>
           </div>
 
           {/* Savings */}
           <div className='bg-gradient-to-br from-green-500/10 to-green-500/5 border border-green-500/30 rounded-lg p-6 text-center'>
             <p className='text-xs font-bold uppercase text-neutral-400 mb-2'>Savings</p>
-            <p className='text-3xl font-bold text-green-400 mb-1'>{numberWithCommas(savings)}</p>
+            <p className='text-3xl font-bold font-mono text-green-400 mb-1'>{numberWithCommas(savings)}</p>
             <p className='text-xs text-neutral-500'>20% of income</p>
           </div>
         </div>

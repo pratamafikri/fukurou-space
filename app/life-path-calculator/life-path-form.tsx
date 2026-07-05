@@ -100,12 +100,13 @@ export default function LifePathForm() {
         <h2 className='text-2xl font-bold text-center mb-6'>Enter Your Birthdate</h2>
 
         {/* Custom Date Input */}
-        <div className='flex items-center justify-center gap-2 sm:gap-3 mb-8 bg-jetblack/50 rounded-lg p-4 border border-primary/20'>
+        <div className='flex items-center justify-center gap-2 sm:gap-3 mb-8 bg-surface rounded-lg p-4 border border-primary/20'>
             <input
               autoFocus
               ref={dayRef}
               type='text'
               inputMode='numeric'
+              pattern='[0-9]*'
               maxLength={2}
               placeholder='DD'
               className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
@@ -116,6 +117,7 @@ export default function LifePathForm() {
               ref={monthRef}
               type='text'
               inputMode='numeric'
+              pattern='[0-9]*'
               maxLength={2}
               placeholder='MM'
               className='w-14 sm:w-16 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
@@ -127,6 +129,7 @@ export default function LifePathForm() {
               ref={yearRef}
               type='text'
               inputMode='numeric'
+              pattern='[0-9]*'
               maxLength={4}
               placeholder='YYYY'
               className='w-20 sm:w-24 h-14 sm:h-16 text-center text-2xl font-bold bg-transparent focus:ring-transparent focus:ring-0 focus:outline-none border border-primary/30 rounded hover:border-primary transition-colors duration-300'
@@ -155,7 +158,7 @@ export default function LifePathForm() {
           <div className='card border-t-4 border-t-primary h-fit'>
             <p className='text-neutral-300 text-sm mb-2 text-center'>Your Life Path Number</p>
             <div className='bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-xl p-8 text-center'>
-              <span className='block font-bold text-7xl sm:text-8xl text-primary'>{lifePathNumber}</span>
+              <span className='block font-display text-7xl sm:text-8xl text-primary'>{lifePathNumber}</span>
             </div>
           </div>
 

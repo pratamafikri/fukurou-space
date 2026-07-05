@@ -28,7 +28,7 @@ export default function BMICalculator() {
             Body Mass Index (BMI) is a method to calculate your ideal body weight based on your body weight and body height. BMI can be
             distinguished between ages. To calculate your BMI, you can use this equation:
           </p>
-          <div className='bg-jetblack/50 border border-primary/30 rounded-lg p-4 my-4 font-mono text-sm sm:text-base overflow-x-auto'>
+          <div className='bg-surface border border-primary/30 rounded-lg p-4 my-4 font-mono text-sm sm:text-base overflow-x-auto'>
             BMI = Body Weight (kg) / Body Height (m)²
           </div>
           <p className='text-xs text-neutral-400 italic'>
